@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gallery with Popup Slider</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      .gallery {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 20px;
+      }
+      .gallery img {
+        width: calc((100% / 4) - 10px);
+        height: 400px;
+        cursor: pointer;
+        object-fit: cover;
+        transition: 0.3s;
+        position: relative;
+        border-radius: 10px;
+      }
+      .gallery img:hover {
+        transform: scale(1.1);
+        z-index: 99;
+        -webkit-box-shadow: 0px 0px 18px 3px rgba(184, 184, 184, 0.68);
+        -moz-box-shadow: 0px 0px 18px 3px rgba(184, 184, 184, 0.68);
+        box-shadow: 0px 0px 18px 3px rgba(184, 184, 184, 0.68);
+      }
+
+      .popup {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        justify-content: center;
+        align-items: center;
+      }
+      .popup img {
+        max-width: 90%;
+        max-height: 80vh;
+      }
+      .popup .close {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        font-size: 30px;
+        color: white;
+        cursor: pointer;
+      }
+      .prev,
+      .next {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 30px;
+        color: white;
+        cursor: pointer;
+        padding: 10px;
+      }
+      .prev {
+        left: 20px;
+      }
+      .next {
+        right: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="gallery">
+      <img
+        src="https://storage.googleapis.com/msgsndr/Ip3fYIGLUcgaJ6v2e5j4/media/67e70463e519ed5927254d61.jpeg"
+        onclick="openPopup(0)"
+      />
+      <img
+        src="https://storage.googleapis.com/msgsndr/Ip3fYIGLUcgaJ6v2e5j4/media/67e7040c13c4b608870fee99.jpeg"
+        onclick="openPopup(1)"
+      />
+      <img
+        src="https://storage.googleapis.com/msgsndr/Ip3fYIGLUcgaJ6v2e5j4/media/67e704073792942410e46f56.jpeg"
+        onclick="openPopup(2)"
+      />
+      <img
+        src="https://storage.googleapis.com/msgsndr/Ip3fYIGLUcgaJ6v2e5j4/media/67e7040513c4b683de0fee95.jpeg"
+        onclick="openPopup(3)"
+      />
+      <img
+        src="https://storage.googleapis.com/msgsndr/Ip3fYIGLUcgaJ6v2e5j4/media/67e703c730a81c429df4d81d.jpeg"
+        onclick="openPopup(4)"
+      />
+      <img
+        src="https://storage.googleapis.com/msgsndr/Ip3fYIGLUcgaJ6v2e5j4/media/67e703c430a81c6cf6f4d81a.jpeg"
+        onclick="openPopup(5)"
+      />
+      <img
+        src="https://storage.googleapis.com/msgsndr/Ip3fYIGLUcgaJ6v2e5j4/media/67e703c113c4b62db90fee6e.jpeg"
+        onclick="openPopup(6)"
+      />
+      <img
+        src="https://storage.googleapis.com/msgsndr/Ip3fYIGLUcgaJ6v2e5j4/media/67e703ca1870f47c7544027f.jpeg"
+        onclick="openPopup(7)"
+      />
+    </div>
+
+    <div class="popup" id="popup">
+      <span class="close" onclick="closePopup()">&times;</span>
+      <span class="prev" onclick="changeImage(-1)">&#10094;</span>
+      <img id="popup-img" />
+      <span class="next" onclick="changeImage(1)">&#10095;</span>
+    </div>
+
+    <script>
+      const images = document.querySelectorAll(".gallery img");
+      let currentIndex = 0;
+      const popup = document.getElementById("popup");
+      const popupImg = document.getElementById("popup-img");
+
+      function openPopup(index) {
+        currentIndex = index;
+        popupImg.src = images[currentIndex].src;
+        popup.style.display = "flex";
+      }
+
+      function closePopup() {
+        popup.style.display = "none";
+      }
+
+      function changeImage(direction) {
+        currentIndex += direction;
+        if (currentIndex < 0) currentIndex = images.length - 1;
+        if (currentIndex >= images.length) currentIndex = 0;
+        popupImg.src = images[currentIndex].src;
+      }
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closePopup();
+        if (e.key === "ArrowRight") changeImage(1);
+        if (e.key === "ArrowLeft") changeImage(-1);
+      });
+    </script>
+  </body>
+</html>
