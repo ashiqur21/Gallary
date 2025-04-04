@@ -17,6 +17,7 @@
         gap: 10px;
         padding: 20px;
       }
+
       .gallery img {
         width: calc((100% / 4) - 10px);
         height: 400px;
@@ -26,6 +27,7 @@
         position: relative;
         border-radius: 10px;
       }
+
       .gallery img:hover {
         transform: scale(1.1);
         z-index: 99;
@@ -45,10 +47,12 @@
         justify-content: center;
         align-items: center;
       }
+
       .popup img {
         max-width: 90%;
         max-height: 80vh;
       }
+
       .popup .close {
         position: absolute;
         top: 20px;
@@ -57,6 +61,7 @@
         color: white;
         cursor: pointer;
       }
+
       .prev,
       .next {
         position: absolute;
@@ -67,46 +72,59 @@
         cursor: pointer;
         padding: 10px;
       }
+
       .prev {
         left: 20px;
       }
+
       .next {
         right: 20px;
+      }
+
+      @media screen and (max-width: 480px) {
+        .gallery img {
+          width: calc((100% / 2) - 10px);
+          height: 150px;
+        }
+
+        .gallery {
+          padding: 0;
+        }
       }
     </style>
   </head>
   <body>
     <div class="gallery">
       <img
-        src="https://storage.googleapis.com/msgsndr/Ip3fYIGLUcgaJ6v2e5j4/media/67e70463e519ed5927254d61.jpeg"
+        src="https://storage.googleapis.com/msgsndr/Ip3fYIGLUcgaJ6v2e5j4/media/67eee7b139379a18db004eb1.jpeg"
         onclick="openPopup(0)"
       />
       <img
-        src="https://storage.googleapis.com/msgsndr/Ip3fYIGLUcgaJ6v2e5j4/media/67e7040c13c4b608870fee99.jpeg"
+        src="https://storage.googleapis.com/msgsndr/Ip3fYIGLUcgaJ6v2e5j4/media/67eeeff0e416f18d47a50ed9.jpeg"
         onclick="openPopup(1)"
       />
       <img
-        src="https://storage.googleapis.com/msgsndr/Ip3fYIGLUcgaJ6v2e5j4/media/67e704073792942410e46f56.jpeg"
+        src="https://storage.googleapis.com/msgsndr/Ip3fYIGLUcgaJ6v2e5j4/media/67eef0258f6c2c50f0a3e3bd.jpeg"
         onclick="openPopup(2)"
       />
       <img
-        src="https://storage.googleapis.com/msgsndr/Ip3fYIGLUcgaJ6v2e5j4/media/67e7040513c4b683de0fee95.jpeg"
+        src="https://storage.googleapis.com/msgsndr/Ip3fYIGLUcgaJ6v2e5j4/media/67eef03ce416f14a16a50f1b.jpeg"
         onclick="openPopup(3)"
       />
       <img
-        src="https://storage.googleapis.com/msgsndr/Ip3fYIGLUcgaJ6v2e5j4/media/67e703c730a81c429df4d81d.jpeg"
+        src="https://storage.googleapis.com/msgsndr/Ip3fYIGLUcgaJ6v2e5j4/media/67eef090391ca1ebbfd5e35b.jpeg"
         onclick="openPopup(4)"
       />
       <img
-        src="https://storage.googleapis.com/msgsndr/Ip3fYIGLUcgaJ6v2e5j4/media/67e703c430a81c6cf6f4d81a.jpeg"
+        src="https://storage.googleapis.com/msgsndr/Ip3fYIGLUcgaJ6v2e5j4/media/67eef0c58f6c2c0dfea3e458.jpeg"
         onclick="openPopup(5)"
       />
       <img
-        src="https://storage.googleapis.com/msgsndr/Ip3fYIGLUcgaJ6v2e5j4/media/67e703c113c4b62db90fee6e.jpeg"
+        src="https://storage.googleapis.com/msgsndr/Ip3fYIGLUcgaJ6v2e5j4/media/67eef0d5019de02bdf65cc98.jpeg"
         onclick="openPopup(6)"
       />
       <img
-        src="https://storage.googleapis.com/msgsndr/Ip3fYIGLUcgaJ6v2e5j4/media/67e703ca1870f47c7544027f.jpeg"
+        src="https://storage.googleapis.com/msgsndr/Ip3fYIGLUcgaJ6v2e5j4/media/67eef0f03792946034f79abe.jpeg"
         onclick="openPopup(7)"
       />
     </div>
@@ -128,10 +146,12 @@
         currentIndex = index;
         popupImg.src = images[currentIndex].src;
         popup.style.display = "flex";
+        document.body.style.overflow = "hidden"; // Disable scrolling
       }
 
       function closePopup() {
         popup.style.display = "none";
+        document.body.style.overflow = "auto"; // Enable scrolling
       }
 
       function changeImage(direction) {
